@@ -51,7 +51,7 @@ pipeline {
         
         stage('docker deploy') {
             steps {
-                bat 'docker run -p 9090:8080 dockerjava
+                bat 'docker run -p 9090:8080 dockerjava'
             }
         }
                 
