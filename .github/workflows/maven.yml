@@ -13,8 +13,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-      echo 'branch is | ${{ steps.branch-name.outputs.current_branch }}'
-
 
     steps:
     - uses: actions/checkout@v3
