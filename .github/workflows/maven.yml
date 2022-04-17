@@ -5,12 +5,16 @@ name: Java CI with Maven
 
 on: [push, pull_request]
 
+env:
+  ## Sets environment variable
+  BRANCH_NAME: ${GITHUB_REF##*/}   
+
 jobs:
   build:
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
     steps:
     - name: Git branch name
-      run: echo "Branch name ${GITHUB_REF##*/}"
+      run: echo ${{env.BRANCH_NAME}}
     - uses: actions/checkout@v3
     - name: Set up JDK 11
       uses: actions/setup-java@v3
@@ -19,4 +23,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      if: ${{env.BRANCH_NAME}} == 'develop'
+      run: |
+        echo "develop"
+        mvn -B package --file pom.xml
