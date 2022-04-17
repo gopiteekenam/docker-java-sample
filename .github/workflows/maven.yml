@@ -9,7 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest   
     steps:
-    - uses: gopiteekenam/docker-java-sample@v1
     - name: Git branch name
       run: echo "Branch name ${GIT_BRANCH_NAME}"
     - uses: actions/checkout@v3
