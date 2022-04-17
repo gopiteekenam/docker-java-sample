@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest   
     steps:
     - name: Git branch name
-      run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF#refs/heads/})"
-      if: ${{env.BRANCH_NAME == 'develop'}}
+      run: echo "::set-env name=BRANCH_NAME::$(echo ${GITHUB_REF##*/})"
+      if: ${{${GITHUB_REF##*/} == 'develop'}}
        - echo "develop"
     - uses: actions/checkout@v3
     - name: Set up JDK 11
