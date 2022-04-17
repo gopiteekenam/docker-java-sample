@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest   
     steps:
     - name: Git branch name
-      run: echo "::BRANCH_NAME::$(echo ${GITHUB_REF##*/})"
+      run: BRANCH_NAME = ${GITHUB_REF##*/})"
       if: ${{BRANCH_NAME == 'develop'}}
        - echo "develop"
     - uses: actions/checkout@v3
