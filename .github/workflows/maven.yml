@@ -26,6 +26,7 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        echo "::set-output name=accesskey::${{env.JAVA_HOME}}"
       id: myref
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
@@ -37,5 +38,6 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo ${{ steps.myref.outputs.branch }}
+        echo ${{ steps.myref.outputs.accesskey }}
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -version
