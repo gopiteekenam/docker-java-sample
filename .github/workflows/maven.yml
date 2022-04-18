@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "inside dev"
       env: 
-        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        access-key-id: "azure key"
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
@@ -38,5 +38,6 @@ jobs:
     - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
+        echo "${{env.access-key-id}}"
         echo "${{env.GIT_BRANCH_NAME}}"
-        mvn version
+        mvn -version
