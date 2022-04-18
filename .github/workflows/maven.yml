@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "inside dev"
       env: 
-        access-key-id: ${{env.GIT_BRANCH_NAME}}
+        ACCESS_KEY_ID: ${{env.GIT_BRANCH_NAME}}
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
@@ -38,6 +38,6 @@ jobs:
     - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
-        echo "${{env.access-key-id}}"
+        echo "${{env.ACCESS_KEY_ID}}"
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -version
