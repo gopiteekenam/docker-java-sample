@@ -27,6 +27,8 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "access-key-id: 'accesskey'" >> "$ACCESS_KEY"
+      env: 
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
