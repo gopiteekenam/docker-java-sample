@@ -33,7 +33,7 @@ jobs:
         echo "test"
         mvn -B install --file pom.xml
     - name: Build Master
-      if: ${GITHUB_REF##*/} == 'master'
+      if: ${{env.BRANCH_NAME}} === 'test'
       run: |
         echo "master"
         mvn -version
