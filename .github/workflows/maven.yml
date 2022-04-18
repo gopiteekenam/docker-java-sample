@@ -38,6 +38,6 @@ jobs:
     - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
-        echo "${{env.ACCESS_KEY_ID}}"
+        echo "${{env.JAVA_HOME}}"
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -version
