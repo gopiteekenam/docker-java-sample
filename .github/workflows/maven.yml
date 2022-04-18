@@ -8,7 +8,7 @@ on: [push, pull_request]
 env:
   ## Sets environment variable
   GIT_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}  
-  name: environment variables for dev
+  ACCESS_KEY: "DEFAULT"
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "inside dev"
       env: 
-        ACCESS_KEY_ID: ${{env.GIT_BRANCH_NAME}}
+        env.ACCESS_KEY: ${{env.GIT_BRANCH_NAME}}
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
@@ -38,6 +38,6 @@ jobs:
     - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
-        echo "${{env.JAVA_HOME}}"
+        echo "${{env.ACCESS_KEY}}"
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -version
