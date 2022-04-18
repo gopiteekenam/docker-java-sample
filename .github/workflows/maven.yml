@@ -24,8 +24,9 @@ jobs:
         cache: maven
     - name: ACCESS KEYS FOR DEV
       if:  env.GIT_BRANCH_NAME == 'develop'
-      env: 
-          ENVIRONMENT : 'develop'
+      run: |
+        env: 
+          DEV: 'develop'
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
