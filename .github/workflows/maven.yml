@@ -8,7 +8,7 @@ on: [push, pull_request]
 env:
   ## Sets environment variable
   GIT_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}  
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,8 +22,23 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: ACCESS KEYS FOR DEV
+      if:  env.GIT_BRANCH_NAME == 'master'
+      run: |
+        echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        echo "::set-output name=accesskey::${{env.JAVA_HOME}}"
+      id: myref_master
+    - name: Build with test
+      if:  env.GIT_BRANCH_NAME == 'test'
+      run: |
+        echo "inside test"
+        echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        echo "::set-output name=accesskey::${{env.JAVA_HOME}}"
+      id: myref_test
+    - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
+        echo ${{ steps.myref.outputs.branch }}
+        echo ${{ steps.myref.outputs.accesskey }}
         echo "${{env.GIT_BRANCH_NAME}}"
-        mvn -B package --file pom.xml
+        mvn -version
