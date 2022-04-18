@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      if:  "contains(${{env.GIT_BRANCH_NAME}}, 'develop')"
+      if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -B package --file pom.xml
