@@ -22,8 +22,20 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Build with stage
       if:  env.GIT_BRANCH_NAME == 'stage'
       run: |
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -B package --file pom.xml
+        
+    - name: Build with test
+      if:  env.GIT_BRANCH_NAME == 'test'
+      run: |
+        echo "${{env.GIT_BRANCH_NAME}}"
+        mvn -B install --file pom.xml
+        
+    - name: Build with develop
+      if:  env.GIT_BRANCH_NAME == 'develop'
+      run: |
+        echo "${{env.GIT_BRANCH_NAME}}"
+        mvn version
