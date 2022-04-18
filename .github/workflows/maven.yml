@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "inside dev"
       env: 
-        access-key-id: "azure key"
+        access-key-id: ${{env.GIT_BRANCH_NAME}}
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
