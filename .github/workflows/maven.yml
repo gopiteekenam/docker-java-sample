@@ -24,14 +24,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        if: env.BRANCH_NAME == 'develop'
-        run:
+        if: [[ env.BRANCH_NAME == 'develop' ]]; then
         env:
-          echo 'inside develop branch'
-        else if: env.BRANCH_NAME == 'test'
-        run:
+          BRANCH_NAME: ${{env.BRANCH_NAME}}
+        elsif: [[ env.BRANCH_NAME == 'test' ]]; then
         env:
-          echo 'inside test branch'
-        else
-          echo 'inside master'
-        
+          BRANCH_NAME: ${{env.BRANCH_NAME}}
+        else:
+          echo 'master'
+        fi
