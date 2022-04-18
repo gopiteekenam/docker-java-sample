@@ -22,12 +22,11 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with stage
-      if:  env.GIT_BRANCH_NAME == 'stage'
+    - name: ACCESS KEYS FOR DEV
+      if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
-        echo "${{env.GIT_BRANCH_NAME}}"
-        mvn -B package --file pom.xml
-        
+        echo "develop"
+        env: ENVIRONMENT : 'develop'
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
