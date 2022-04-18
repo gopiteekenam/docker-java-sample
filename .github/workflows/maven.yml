@@ -25,7 +25,7 @@ jobs:
         cache: maven
     - name: ACCESS KEYS FOR DEV
       if:  env.GIT_BRANCH_NAME == 'develop'
-      with:
+      uses: |
         access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
