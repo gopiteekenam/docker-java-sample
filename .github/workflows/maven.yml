@@ -7,7 +7,7 @@ on: [push, pull_request]
 
 env:
   ## Sets environment variable
-  GIT_BRANCH_NAME: ${GITHUB_REF##*/}   
+  GIT_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}  
 
 jobs:
   build:
