@@ -25,9 +25,11 @@ jobs:
     - name: Build with Maven
       run: |
         if: env.BRANCH_NAME == 'develop'
+        run:
         env:
           echo 'inside develop branch'
         else if: env.BRANCH_NAME == 'test'
+        run:
         env:
           echo 'inside test branch'
         else
