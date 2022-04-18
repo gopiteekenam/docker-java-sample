@@ -23,12 +23,12 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Dev
-      if: ${{env.BRANCH_NAME}} == 'develop'
+      if: ${{env.BRANCH_NAME}} === 'develop'
       run: |
         echo "develop"
         mvn -B package --file pom.xml
     - name: Build test
-      if: ${{env.BRANCH_NAME}} == 'test'
+      if: ${{env.BRANCH_NAME}} === 'test'
       run: |
         echo "test"
         mvn -B install --file pom.xml
