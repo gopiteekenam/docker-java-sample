@@ -26,7 +26,7 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
-        id: myref
+      id: myref
         mvn -B install --file pom.xml
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
