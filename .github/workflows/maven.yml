@@ -8,6 +8,7 @@ on: [push, pull_request]
 env:
   ## Sets environment variable
   GIT_BRANCH_NAME: ${{ github.head_ref || github.ref_name }}  
+  name: environment variables for dev
 
 jobs:
   build:
@@ -24,9 +25,10 @@ jobs:
         cache: maven
     - name: ACCESS KEYS FOR DEV
       if:  env.GIT_BRANCH_NAME == 'develop'
-      run: |
-        env: 
-          DEV: 'develop'
+      with:
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
