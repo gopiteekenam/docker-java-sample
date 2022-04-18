@@ -26,10 +26,10 @@ jobs:
       run: |
         if [[ env.BRANCH_NAME == 'develop' ]]; then
         env:
-          BRANCH_NAME: ${{env.BRANCH_NAME}}
+          BRANCH: 'develop'
         elsif [[ env.BRANCH_NAME == 'test' ]]; then
         env:
-          BRANCH_NAME: ${{env.BRANCH_NAME}}
+          BRANCH: 'test'
         else
           echo 'master'
         fi
