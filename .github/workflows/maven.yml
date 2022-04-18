@@ -16,13 +16,6 @@ jobs:
     - name: Git branch name
       run: echo ${{env.BRANCH_NAME}}
     - uses: actions/checkout@v3
-    - name: condition 1
-      if: "contains(github.event.head_commit.message, 'CONDITION 1 MSG')"
-      run: echo 'condition1'
-    - name: condition 2
-      if: "contains(github.event.head_commit.message, 'CONDITION 2 MSG')"
-      run: echo 'condition2'
-    
     - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
@@ -30,13 +23,18 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
+      if: ${{env.BRANCH_NAME}} == 'develop'
       run: |
-        if [[ env.BRANCH_NAME == 'develop' ]]; then
-        env:
-          BRANCH: 'develop'
-        elsif [[ env.BRANCH_NAME == 'test' ]]; then
-        env:
-          BRANCH: 'test'
-        else
-          echo 'master'
-        fi
+        echo "develop"
+        mvn -B package --file pom.xml
+    - name: Build test
+      if: ${{env.BRANCH_NAME}} == 'test'
+      run: |
+        echo "test"
+        mvn -B install --file pom.xml
+    - name: Build Master
+      if: ${{env.BRANCH_NAME}} == 'master'
+      run: |
+        echo "master"
+        mvn -version
+      
