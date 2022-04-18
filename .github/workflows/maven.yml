@@ -24,12 +24,12 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: |
-        if: [[ env.BRANCH_NAME == 'develop' ]]; then
+        if [[ env.BRANCH_NAME == 'develop' ]]; then
         env:
           BRANCH_NAME: ${{env.BRANCH_NAME}}
-        elsif: [[ env.BRANCH_NAME == 'test' ]]; then
+        elsif [[ env.BRANCH_NAME == 'test' ]]; then
         env:
           BRANCH_NAME: ${{env.BRANCH_NAME}}
-        else:
+        else
           echo 'master'
         fi
