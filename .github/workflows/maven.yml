@@ -27,7 +27,7 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "inside dev"
-        env.ACCESS_KEY: ${{env.GIT_BRANCH_NAME}}
+        ACCESS_KEY: ${{env.GIT_BRANCH_NAME}}
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
