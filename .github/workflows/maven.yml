@@ -24,8 +24,10 @@ jobs:
         cache: maven
     - name: ACCESS KEYS FOR DEV
       if:  env.GIT_BRANCH_NAME == 'develop'
-      env: 
-        ACCESS_KEY: ${{env.GIT_BRANCH_NAME}}
+      run: |
+        echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
+        id: myref
+        mvn -B install --file pom.xml
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
@@ -35,6 +37,6 @@ jobs:
     - name: Build with develop
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
-        echo "${{env.ACCESS_KEY}}"
+        echo ${{ steps.myref.outputs.branch }}
         echo "${{env.GIT_BRANCH_NAME}}"
         mvn -version
