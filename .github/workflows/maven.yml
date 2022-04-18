@@ -26,7 +26,8 @@ jobs:
       if:  env.GIT_BRANCH_NAME == 'develop'
       run: |
         echo "develop"
-        env: ENVIRONMENT : 'develop'
+        env: 
+          ENVIRONMENT : 'develop'
     - name: Build with test
       if:  env.GIT_BRANCH_NAME == 'test'
       run: |
