@@ -22,19 +22,8 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Dev
-      if: ${{env.BRANCH_NAME}} === 'develop'
+    - name: Build with Maven
+      if: ${{env.BRANCH_NAME}} == 'develop'
       run: |
         echo "develop"
         mvn -B package --file pom.xml
-    - name: Build test
-      if: ${{env.BRANCH_NAME}} === 'test'
-      run: |
-        echo "test"
-        mvn -B install --file pom.xml
-    - name: Build Master
-      if: ${{env.BRANCH_NAME}} === 'test'
-      run: |
-        echo "master"
-        mvn -version
-      
