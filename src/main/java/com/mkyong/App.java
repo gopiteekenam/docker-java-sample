@@ -1,3 +1,5 @@
+#This class is for getting the App information
+
 package com.mkyong;
 
 import org.jsoup.Jsoup;
